@@ -63,6 +63,17 @@ server.put('/api/accounts/:id', async (req, res) => {
     }
 });
 
+server.delete('/api/accounts/:id', async (req, res) => {
+    try {
+        res.status(200).json( await Accounts.remove(req.params.id));
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Error deleting that account"
+        });
+    }
+});
+
 
 
 module.exports = server;
