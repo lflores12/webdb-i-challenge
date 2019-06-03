@@ -52,6 +52,17 @@ server.post('/api/accounts', async (req, res) => {
     }
 });
 
+server.put('/api/accounts/:id', async (req, res) => {
+    try {
+        res.status(200).json( await Accounts.update(req.params.id, req.body));
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({
+            message: "Error updating that account"
+        });
+    }
+});
+
 
 
 module.exports = server;
